@@ -5,11 +5,11 @@ import random
 
 def generate_code():
     chars = string.ascii_letters + string.digits
-    return ''.join(random.choice(chars, k=6))
+    return ''.join(random.choices(chars, k=6))
 
 
 class ShortURL(models.Model):
-    orginal_url = models.URLField()
+    original_url = models.URLField()
     short_code = models.CharField(
         max_length=10,
         unique=True,
