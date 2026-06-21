@@ -40,4 +40,25 @@ def redirect_url(request, code):
             "URL not found",
             status=status.HTTP_404_NOT_FOUND
             )  
-    
+
+
+class AnalyticsView(APIView):
+
+    def get(self, request, code):
+
+        try:
+            url = ShortURL.objects.get(short_code=code)
+
+            return Response({
+                "original_url": url.original_url,
+                "short_code": url.short_code,
+                "clicks": url.clicks,
+                "created_at": url.created_at
+            })
+        
+        except ShortURL.DoesNotExist:
+            return Response(
+                {"error": "URL not found"},
+                status=status.HTTP_404_NOT_FOUND
+            )
+        
