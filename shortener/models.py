@@ -9,7 +9,7 @@ def generate_code():
 
 
 class ShortURL(models.Model):
-    orginal_url = models.Models.URLField()
+    orginal_url = models.URLField()
     short_code = models.CharField(
         max_length=10,
         unique=True,
